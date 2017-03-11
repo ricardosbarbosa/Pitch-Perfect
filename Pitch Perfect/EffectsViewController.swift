@@ -34,8 +34,16 @@ class EffectsViewController: UIViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     setupAudio()
     configureUI(playing ? PlayingState.playing : PlayingState.notPlaying)
+    echoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    reverbButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    chipmunkButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    vaderButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    slowButon.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    fastButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    stopButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
   }
   
   

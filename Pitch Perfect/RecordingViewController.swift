@@ -28,6 +28,9 @@ class RecordingViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    micButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+    stopButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
     updateUI()
   }
   
