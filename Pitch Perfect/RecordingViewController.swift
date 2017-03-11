@@ -9,7 +9,14 @@
 import UIKit
 import AVFoundation
 
-class RecordingViewController: UIViewController {
+extension RecordingViewController : AVAudioRecorderDelegate {
+  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    if flag {
+      performSegue(withIdentifier: "EffectsViewController", sender: nil)
+    }
+  }
+}
+class RecordingViewController: UIViewController{
   
   // MARK: Properties
   
@@ -53,6 +60,7 @@ class RecordingViewController: UIViewController {
     try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with:AVAudioSessionCategoryOptions.defaultToSpeaker)
     
     try! audioRecorder = AVAudioRecorder(url: filePath!, settings: [:])
+    audioRecorder.delegate = self
     audioRecorder.isMeteringEnabled = true
     audioRecorder.prepareToRecord()
     audioRecorder.record()
@@ -62,11 +70,8 @@ class RecordingViewController: UIViewController {
   @IBAction func stopRecording(_ sender: Any) {
     recording = false
     audioRecorder.stop()
-    
     let audioSession = AVAudioSession.sharedInstance()
     try! audioSession.setActive(false)
-    
-    performSegue(withIdentifier: "EffectsViewController", sender: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
